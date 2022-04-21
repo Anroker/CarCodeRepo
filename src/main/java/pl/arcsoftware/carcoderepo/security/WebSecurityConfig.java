@@ -26,9 +26,6 @@ import pl.arcsoftware.carcoderepo.security.services.UserDetailsServiceImpl;
         prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Value("${spring.h2.console.path}")
-    private String h2ConsolePath;
-
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
     @Autowired
@@ -62,11 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/test/**").permitAll()
-                .antMatchers(h2ConsolePath + "/**").permitAll()
                 .anyRequest().authenticated();
-
-        // fix H2 database console: Refused to display ' in a frame because it set 'X-Frame-Options' to 'deny'
-        http.headers().frameOptions().sameOrigin();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
