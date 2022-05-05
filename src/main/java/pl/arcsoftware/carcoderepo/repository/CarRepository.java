@@ -5,10 +5,12 @@ import org.springframework.stereotype.Repository;
 import pl.arcsoftware.carcoderepo.models.Car;
 import pl.arcsoftware.carcoderepo.models.User;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface CarRepository extends JpaRepository<Car,Long> {
+public interface CarRepository extends JpaRepository<Car, Long> {
 
-    Optional<Car> findCarByUser(User user);
+    List<Car> findCarByUser(User user);
+
 }
