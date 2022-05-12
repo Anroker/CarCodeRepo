@@ -14,6 +14,7 @@ import pl.arcsoftware.carcoderepo.security.services.UserDetailsImpl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/car")
@@ -69,11 +70,17 @@ public class CarController {
                     .body(new MessageResponse("Error: Cant find car by id!"));
         }
 
-        return ResponseEntity.ok(new CarResponse(
-                "success",
-                car.get().getModel(),
-                car.get().getEngine()
-        ));
+//        return ResponseEntity.ok(new CarResponse(
+//                "success",
+//                car.get().getModel(),
+//                car.get().getEngine()
+//        ));
+
+        return ResponseEntity.ok(new CarResponse()
+                .setId(car.get().getId())
+                .setModel(car.get().getModel())
+                .setEngine(car.get().getEngine())
+                .setOkResponse("success"));
 
     }
 
@@ -83,8 +90,22 @@ public class CarController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         Optional<User> user = userRepository.findById(userDetails.getId());
 
-        List<Car> carList = carRepository.findCarByUser(user.get());
 
-        return ResponseEntity.ok(carList);
+        List<Car> carList = carRepository.findCarByUser(user.get());
+        List<CarResponse> carResponseList;
+        carResponseList = carList.stream().map(this::buildCarResponse).collect(Collectors.toList());
+
+        return ResponseEntity.ok(carResponseList);
+    }
+
+    private CarResponse buildCarResponse(Car car) {
+        CarResponse carResponse = new CarResponse();
+
+        carResponse
+                .setId(car.getId())
+                .setModel(car.getModel())
+                .setEngine(car.getEngine());
+
+        return carResponse;
     }
 }

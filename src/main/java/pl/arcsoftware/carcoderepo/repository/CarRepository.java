@@ -6,7 +6,6 @@ import pl.arcsoftware.carcoderepo.models.Car;
 import pl.arcsoftware.carcoderepo.models.User;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {

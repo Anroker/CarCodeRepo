@@ -1,8 +1,14 @@
 package pl.arcsoftware.carcoderepo.payload.response.car;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 public class CarResponse {
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String okResponse;
+
+    private Long id;
 
     private String model;
 
@@ -14,27 +20,42 @@ public class CarResponse {
         this.engine = engine;
     }
 
+    public CarResponse() {
+    }
+
     public String getOkResponse() {
         return okResponse;
     }
 
-    public void setOkResponse(String okResponse) {
+    public CarResponse setOkResponse(String okResponse) {
         this.okResponse = okResponse;
+        return this;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public CarResponse setId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public String getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public CarResponse setModel(String model) {
         this.model = model;
+        return this;
     }
 
     public String getEngine() {
         return engine;
     }
 
-    public void setEngine(String engine) {
+    public CarResponse setEngine(String engine) {
         this.engine = engine;
+        return this;
     }
 }
