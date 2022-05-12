@@ -1,6 +1,5 @@
 package pl.arcsoftware.carcoderepo.payload.response.car;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class CarResponse {
@@ -8,6 +7,7 @@ public class CarResponse {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String okResponse;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Long id;
 
     private String model;

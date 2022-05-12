@@ -6,12 +6,14 @@ import org.springframework.web.bind.annotation.*;
 import pl.arcsoftware.carcoderepo.models.Car;
 import pl.arcsoftware.carcoderepo.models.User;
 import pl.arcsoftware.carcoderepo.payload.request.car.CarRequest;
+import pl.arcsoftware.carcoderepo.payload.request.car.CarUpdateRequest;
 import pl.arcsoftware.carcoderepo.payload.response.MessageResponse;
 import pl.arcsoftware.carcoderepo.payload.response.car.CarResponse;
 import pl.arcsoftware.carcoderepo.repository.CarRepository;
 import pl.arcsoftware.carcoderepo.repository.UserRepository;
 import pl.arcsoftware.carcoderepo.security.services.UserDetailsImpl;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -70,12 +72,6 @@ public class CarController {
                     .body(new MessageResponse("Error: Cant find car by id!"));
         }
 
-//        return ResponseEntity.ok(new CarResponse(
-//                "success",
-//                car.get().getModel(),
-//                car.get().getEngine()
-//        ));
-
         return ResponseEntity.ok(new CarResponse()
                 .setId(car.get().getId())
                 .setModel(car.get().getModel())
@@ -90,12 +86,34 @@ public class CarController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         Optional<User> user = userRepository.findById(userDetails.getId());
 
-
-        List<Car> carList = carRepository.findCarByUser(user.get());
-        List<CarResponse> carResponseList;
-        carResponseList = carList.stream().map(this::buildCarResponse).collect(Collectors.toList());
+        List<Car> carList = carRepository.findCarByUserOrderById(user.get());
+        List<CarResponse> carResponseList = carList.stream().map(this::buildCarResponse).collect(Collectors.toList());
 
         return ResponseEntity.ok(carResponseList);
+    }
+
+    @PutMapping("/updateCar/{id}")
+    public ResponseEntity<?> updateCar(Authentication authentication, @PathVariable(value = "id") Long carId,
+                                       @Valid @RequestBody CarUpdateRequest carUpdateRequest) {
+
+        Optional<Car> optionalCar = carRepository.findById(carId);
+
+        if (optionalCar.isEmpty()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Cant find car by id!"));
+        }
+
+        Car car = optionalCar.get();
+
+        car.setModel(carUpdateRequest.getModel());
+        car.setEngine(carUpdateRequest.getEngine());
+
+        return ResponseEntity.ok(new CarResponse()
+                .setId(car.getId())
+                .setModel(car.getModel())
+                .setEngine(car.getEngine())
+                .setOkResponse("success"));
     }
 
     private CarResponse buildCarResponse(Car car) {

@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {
 
-    List<Car> findCarByUser(User user);
+    List<Car> findCarByUserOrderById(User user);
 
 }
