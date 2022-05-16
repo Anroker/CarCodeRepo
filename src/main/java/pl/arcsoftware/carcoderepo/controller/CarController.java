@@ -109,6 +109,8 @@ public class CarController {
         car.setModel(carUpdateRequest.getModel());
         car.setEngine(carUpdateRequest.getEngine());
 
+        carRepository.save(car);
+
         return ResponseEntity.ok(new CarResponse()
                 .setId(car.getId())
                 .setModel(car.getModel())
