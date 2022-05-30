@@ -6,4 +6,4 @@ ENV JDBC=$JDBCDB
 ENV username=$USER
 ENV password=$PASSWORD
 
-ENTRYPOINT["java","-jar","/CarCode.jar"]
+ENTRYPOINT ["java","-jar","/CarCode.jar"]
