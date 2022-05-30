@@ -20,9 +20,9 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
-  JDBC: ${{ secrets.JDBCDB }}
-  username: ${{ secrets.USER }}
-  password: ${{ secrets.PASSWORD }}
+  JDBCDB: ${{ secrets.JDBCDB }}
+  USER: ${{ secrets.USER }}
+  PASSWORD: ${{ secrets.PASSWORD }}
 
 
 jobs:
