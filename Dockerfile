@@ -2,8 +2,8 @@ FROM openjdk:17-alpine
 
 COPY target/CarCode.jar CarCode.jar
 
-JDBC=${ secrets.JDBCDB }
-username=${ secrets.USER }
-password=${ secrets.PASSWORD }
+ENV JDBC=${ JDBCDB }
+ENV username=${ USER }
+ENV password=${ PASSWORD }
 
 ENTRYPOINT["java","-jar","/CarCode.jar"]
