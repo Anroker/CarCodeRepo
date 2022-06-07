@@ -91,14 +91,6 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: | 
-            JDBCDB:$JDBCDB
-            USER:$USER
-            PASSWORD:$PASSWORD
-          secrets: |
-            "DBAddress=${{ secrets.JDBCDB }}"
-            "USERDB=${{ secrets.USER }}"
-            "PASSWORDDB=${{ secrets.PASSWORD }}"
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
