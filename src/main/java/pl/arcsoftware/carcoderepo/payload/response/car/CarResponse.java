@@ -14,6 +14,10 @@ public class CarResponse {
 
     private String engine;
 
+    private short yearOfProduction;
+
+    private String vin;
+
     public CarResponse(String okResponse, String model, String engine) {
         this.okResponse = okResponse;
         this.model = model;
@@ -21,6 +25,24 @@ public class CarResponse {
     }
 
     public CarResponse() {
+    }
+
+    public short getYearOfProduction() {
+        return yearOfProduction;
+    }
+
+    public CarResponse setYearOfProduction(short yearOfProduction) {
+        this.yearOfProduction = yearOfProduction;
+        return this;
+    }
+
+    public String getVin() {
+        return vin;
+    }
+
+    public CarResponse setVin(String vin) {
+        this.vin = vin;
+        return this;
     }
 
     public String getOkResponse() {
