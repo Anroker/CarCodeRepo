@@ -1,5 +1,7 @@
 package pl.arcsoftware.carcoderepo.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +20,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+//@Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
 @RestController
 @RequestMapping("/api/car")
+@SecurityRequirement(name = "bearerAuth")
 public class CarController {
 
     private final CarRepository carRepository;
@@ -38,6 +42,9 @@ public class CarController {
         return ResponseEntity.ok("userName: " + userDetails.getUsername() + " UserID: " + userDetails.getId());
     }
 
+    @Operation(
+            summary = "Add car to logged user"
+    )
     @PostMapping("/addCar")
     public ResponseEntity<?> addCarToUser(Authentication authentication, @RequestBody CarRequest carRequest) {
 
