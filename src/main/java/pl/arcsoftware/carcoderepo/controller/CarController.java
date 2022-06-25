@@ -1,7 +1,12 @@
 package pl.arcsoftware.carcoderepo.controller;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +26,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 //@Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
+
 @RestController
 @RequestMapping("/api/car")
 @SecurityRequirement(name = "bearerAuth")
+@Tag(name = "Car controller", description = "Endpoints for use to manage your car")
 public class CarController {
 
     private final CarRepository carRepository;
@@ -34,6 +41,9 @@ public class CarController {
         this.userRepository = userRepository;
     }
 
+    @Operation(
+            deprecated = true
+    )
     @GetMapping("/test")
     public ResponseEntity<?> test(Authentication principal) {
 
@@ -43,7 +53,7 @@ public class CarController {
     }
 
     @Operation(
-            summary = "Add car to logged user"
+            summary = "Add car to logged user ( require to be authenticated )"
     )
     @PostMapping("/addCar")
     public ResponseEntity<?> addCarToUser(Authentication authentication, @RequestBody CarRequest carRequest) {
@@ -69,6 +79,10 @@ public class CarController {
 
     }
 
+    @Operation(
+            summary = "Get car by id",
+            description = "endpoint returns your car",
+    parameters = @Parameter(in = ParameterIn.PATH, name = "id", description = "id of car"))
     @GetMapping("/getCar/{id}")
     public ResponseEntity<?> getCarById(@PathVariable Long id) {
         Optional<Car> car = carRepository.findById(id);
