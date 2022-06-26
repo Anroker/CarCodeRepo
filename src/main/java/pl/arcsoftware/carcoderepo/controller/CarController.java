@@ -1,10 +1,8 @@
 package pl.arcsoftware.carcoderepo.controller;
 
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
-import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
@@ -81,8 +79,8 @@ public class CarController {
 
     @Operation(
             summary = "Get car by id",
-            description = "endpoint returns your car",
-    parameters = @Parameter(in = ParameterIn.PATH, name = "id", description = "id of car"))
+            description = "Returns your selected car",
+            parameters = @Parameter(in = ParameterIn.PATH, name = "id", description = "id of car"))
     @GetMapping("/getCar/{id}")
     public ResponseEntity<?> getCarById(@PathVariable Long id) {
         Optional<Car> car = carRepository.findById(id);
@@ -103,6 +101,10 @@ public class CarController {
 
     }
 
+    @Operation(
+            summary = "Get all of your cars",
+            description = "Returns your cars"
+    )
     @GetMapping("/getAllCars")
     public ResponseEntity<?> getAllCars(Authentication authentication) {
 
@@ -115,6 +117,10 @@ public class CarController {
         return ResponseEntity.ok(carResponseList);
     }
 
+    @Operation(
+            summary = "Update car",
+            description = "Updates your car with provided data"
+    )
     @PutMapping("/updateCar/{id}")
     public ResponseEntity<?> updateCar(Authentication authentication, @PathVariable(value = "id") Long carId,
                                        @Valid @RequestBody CarUpdateRequest carUpdateRequest) {
