@@ -1,5 +1,7 @@
 package pl.arcsoftware.carcoderepo.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -49,6 +51,9 @@ public class AuthController {
         this.jwtUtils = jwtUtils;
     }
 
+    @Operation(
+            summary = "Use to access other endpoint"
+    )
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -70,6 +75,10 @@ public class AuthController {
                 roles));
     }
 
+    @Operation(
+            summary = "register user",
+            description = "pass role as: \r\n \"role:\" [\"user\",\"mod\"]"
+    )
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {

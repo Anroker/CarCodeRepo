@@ -1,5 +1,10 @@
 package pl.arcsoftware.carcoderepo.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +23,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+//@Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
+
 @RestController
 @RequestMapping("/api/car")
+@SecurityRequirement(name = "bearerAuth")
+@Tag(name = "Car controller", description = "Endpoints for use to manage your car")
 public class CarController {
 
     private final CarRepository carRepository;
@@ -30,6 +39,9 @@ public class CarController {
         this.userRepository = userRepository;
     }
 
+    @Operation(
+            deprecated = true
+    )
     @GetMapping("/test")
     public ResponseEntity<?> test(Authentication principal) {
 
@@ -38,6 +50,9 @@ public class CarController {
         return ResponseEntity.ok("userName: " + userDetails.getUsername() + " UserID: " + userDetails.getId());
     }
 
+    @Operation(
+            summary = "Add car to logged user ( require to be authenticated )"
+    )
     @PostMapping("/addCar")
     public ResponseEntity<?> addCarToUser(Authentication authentication, @RequestBody CarRequest carRequest) {
 
@@ -62,6 +77,10 @@ public class CarController {
 
     }
 
+    @Operation(
+            summary = "Get car by id",
+            description = "Returns your selected car",
+            parameters = @Parameter(in = ParameterIn.PATH, name = "id", description = "id of car"))
     @GetMapping("/getCar/{id}")
     public ResponseEntity<?> getCarById(@PathVariable Long id) {
         Optional<Car> car = carRepository.findById(id);
@@ -82,6 +101,10 @@ public class CarController {
 
     }
 
+    @Operation(
+            summary = "Get all of your cars",
+            description = "Returns your cars"
+    )
     @GetMapping("/getAllCars")
     public ResponseEntity<?> getAllCars(Authentication authentication) {
 
@@ -94,6 +117,10 @@ public class CarController {
         return ResponseEntity.ok(carResponseList);
     }
 
+    @Operation(
+            summary = "Update car",
+            description = "Updates your car with provided data"
+    )
     @PutMapping("/updateCar/{id}")
     public ResponseEntity<?> updateCar(Authentication authentication, @PathVariable(value = "id") Long carId,
                                        @Valid @RequestBody CarUpdateRequest carUpdateRequest) {
