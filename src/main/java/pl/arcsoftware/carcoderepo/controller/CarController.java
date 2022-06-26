@@ -76,6 +76,8 @@ public class CarController {
                 .setId(car.get().getId())
                 .setModel(car.get().getModel())
                 .setEngine(car.get().getEngine())
+                .setVin(car.get().getVin())
+                .setYearOfProduction(car.get().getYear_of_production())
                 .setOkResponse("success"));
 
     }
@@ -108,6 +110,8 @@ public class CarController {
 
         car.setModel(carUpdateRequest.getModel());
         car.setEngine(carUpdateRequest.getEngine());
+        car.setYear_of_production(carUpdateRequest.getYear_of_production());
+        car.setVin(carUpdateRequest.getVin());
 
         carRepository.save(car);
 
@@ -115,6 +119,8 @@ public class CarController {
                 .setId(car.getId())
                 .setModel(car.getModel())
                 .setEngine(car.getEngine())
+                .setYearOfProduction(car.getYear_of_production())
+                .setVin(car.getVin())
                 .setOkResponse("success"));
     }
 
@@ -124,7 +130,9 @@ public class CarController {
         carResponse
                 .setId(car.getId())
                 .setModel(car.getModel())
-                .setEngine(car.getEngine());
+                .setEngine(car.getEngine())
+                .setVin(car.getVin())
+                .setYearOfProduction(car.getYear_of_production());
 
         return carResponse;
     }
