@@ -1,32 +1,57 @@
 package pl.arcsoftware.carcoderepo.models;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "fuel_notes")
 public class FuelNotes {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "fuel_notes_id_seq", sequenceName = "fuel_notes_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "fuel_notes_id_seq")
     private Long id;
 
-    @NotBlank
     private BigDecimal fuel;
 
-    @NotBlank
     private Integer distance;
 
-    @NotBlank
-    private LocalDateTime created_at;
+    @CreatedDate
+    @Column(name = "created_at")
+    private LocalDateTime createdDate;
 
-    @NotBlank
-    private LocalDateTime modified_at;
+    @LastModifiedDate
+    @Column(name = "modified_at")
+    private LocalDateTime modifiedDate;
 
     @ManyToOne
     @JoinColumn(name = "car_id")
     private Car car;
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public FuelNotes setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+        return this;
+    }
+
+    public LocalDateTime getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public FuelNotes setModifiedDate(LocalDateTime modifiedDate) {
+        this.modifiedDate = modifiedDate;
+        return this;
+    }
 
     public Long getId() {
         return id;
@@ -52,24 +77,6 @@ public class FuelNotes {
 
     public FuelNotes setDistance(Integer distance) {
         this.distance = distance;
-        return this;
-    }
-
-    public LocalDateTime getCreated_at() {
-        return created_at;
-    }
-
-    public FuelNotes setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
-        return this;
-    }
-
-    public LocalDateTime getModified_at() {
-        return modified_at;
-    }
-
-    public FuelNotes setModified_at(LocalDateTime modified_at) {
-        this.modified_at = modified_at;
         return this;
     }
 

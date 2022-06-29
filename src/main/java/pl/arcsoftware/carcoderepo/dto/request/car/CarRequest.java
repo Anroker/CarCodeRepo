@@ -1,4 +1,4 @@
-package pl.arcsoftware.carcoderepo.payload.request.car;
+package pl.arcsoftware.carcoderepo.dto.request.car;
 
 import javax.validation.constraints.NotBlank;
 

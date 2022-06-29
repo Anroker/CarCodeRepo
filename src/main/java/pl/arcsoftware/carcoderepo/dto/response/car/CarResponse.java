@@ -1,4 +1,4 @@
-package pl.arcsoftware.carcoderepo.payload.response.car;
+package pl.arcsoftware.carcoderepo.dto.response.car;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

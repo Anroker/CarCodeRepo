@@ -1,4 +1,4 @@
-package pl.arcsoftware.carcoderepo.payload.response;
+package pl.arcsoftware.carcoderepo.dto.response;
 
 import java.util.List;
 

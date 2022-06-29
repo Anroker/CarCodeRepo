@@ -1,7 +1,6 @@
 package pl.arcsoftware.carcoderepo.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,10 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import pl.arcsoftware.carcoderepo.models.ERole;
 import pl.arcsoftware.carcoderepo.models.Role;
 import pl.arcsoftware.carcoderepo.models.User;
-import pl.arcsoftware.carcoderepo.payload.request.LoginRequest;
-import pl.arcsoftware.carcoderepo.payload.request.SignupRequest;
-import pl.arcsoftware.carcoderepo.payload.response.JwtResponse;
-import pl.arcsoftware.carcoderepo.payload.response.MessageResponse;
+import pl.arcsoftware.carcoderepo.dto.request.LoginRequest;
+import pl.arcsoftware.carcoderepo.dto.request.SignupRequest;
+import pl.arcsoftware.carcoderepo.dto.response.JwtResponse;
+import pl.arcsoftware.carcoderepo.dto.response.MessageResponse;
 import pl.arcsoftware.carcoderepo.repository.RoleRepository;
 import pl.arcsoftware.carcoderepo.repository.UserRepository;
 import pl.arcsoftware.carcoderepo.security.jwt.JwtUtils;
