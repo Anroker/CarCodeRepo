@@ -1,4 +1,4 @@
-package pl.arcsoftware.carcoderepo.payload.request;
+package pl.arcsoftware.carcoderepo.dto.request;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

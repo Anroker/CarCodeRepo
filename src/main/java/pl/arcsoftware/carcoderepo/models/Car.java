@@ -1,16 +1,22 @@
 package pl.arcsoftware.carcoderepo.models;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 @Entity
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "user_car")
 public class Car {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
+    @SequenceGenerator(name = "user_car_id_seq",
+            sequenceName = "user_car_id_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "user_car_id_seq")
     private Long id;
 
     private String model;
@@ -75,5 +81,16 @@ public class Car {
     public Car setVin(String vin) {
         this.vin = vin;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "model='" + model + '\'' +
+                ", engine='" + engine + '\'' +
+                ", user=" + user.getUsername() +
+                ", year_of_production=" + year_of_production +
+                ", vin='" + vin + '\'' +
+                '}';
     }
 }
