@@ -26,6 +26,7 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/api/car")
 @SecurityRequirement(name = "bearerAuth")
 @Tag(name = "Car controller", description = "Endpoints for use to manage your car")

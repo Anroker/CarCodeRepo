@@ -1,7 +1,0 @@
-package pl.arcsoftware.carcoderepo.models;
-
-public enum ERole {
-    ROLE_USER,
-    ROLE_MODERATOR,
-    ROLE_ADMIN
-}

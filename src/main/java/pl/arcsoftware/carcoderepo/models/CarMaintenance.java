@@ -1,13 +1,11 @@
 package pl.arcsoftware.carcoderepo.models;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "car_maintenance")
+@Table(name = "maintenance")
 public class CarMaintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,16 +18,8 @@ public class CarMaintenance {
     @Column(name = "modified_at", nullable = false)
     private OffsetDateTime modifiedAt;
 
-    @Column(name = "cost", nullable = false, precision = 8, scale = 2)
-    private BigDecimal cost;
-
-    @Column(name = "description", nullable = false)
-    @Type(type = "org.hibernate.type.TextType")
-    private String description;
-
-    @Column(name = "invoice_path")
-    @Type(type = "org.hibernate.type.TextType")
-    private String invoicePath;
+    @Column(name = "rate", nullable = false, precision = 8, scale = 2)
+    private BigDecimal rate;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "car_id", nullable = false)
@@ -59,28 +49,12 @@ public class CarMaintenance {
         this.modifiedAt = modifiedAt;
     }
 
-    public BigDecimal getCost() {
-        return cost;
+    public BigDecimal getRate() {
+        return rate;
     }
 
-    public void setCost(BigDecimal cost) {
-        this.cost = cost;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getInvoicePath() {
-        return invoicePath;
-    }
-
-    public void setInvoicePath(String invoicePath) {
-        this.invoicePath = invoicePath;
+    public void setRate(BigDecimal cost) {
+        this.rate = cost;
     }
 
     public Car getCar() {

@@ -9,14 +9,10 @@ import javax.validation.constraints.Size;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "user_car")
+@Table(name = "car")
 public class Car {
     @Id
-    @SequenceGenerator(name = "user_car_id_seq",
-            sequenceName = "user_car_id_seq",
-            allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "user_car_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String model;
@@ -33,44 +29,48 @@ public class Car {
     @Size(min = 17, max = 17)
     private String vin;
 
+    public Long getId() {
+        return id;
+    }
+
+    public Car setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
     public String getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public Car setModel(String model) {
         this.model = model;
+        return this;
     }
 
     public String getEngine() {
         return engine;
     }
 
-    public void setEngine(String engine) {
+    public Car setEngine(String engine) {
         this.engine = engine;
+        return this;
     }
 
     public User getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public Car setUser(User user) {
         this.user = user;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        return this;
     }
 
     public short getYear_of_production() {
         return year_of_production;
     }
 
-    public Car setYear_of_production(short yearOfProduction) {
-        this.year_of_production = yearOfProduction;
+    public Car setYear_of_production(short year_of_production) {
+        this.year_of_production = year_of_production;
         return this;
     }
 
