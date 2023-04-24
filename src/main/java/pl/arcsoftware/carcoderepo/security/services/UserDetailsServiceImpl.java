@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.arcsoftware.carcoderepo.models.newModels.UsersEntity;
+import pl.arcsoftware.carcoderepo.models.UsersEntity;
 import pl.arcsoftware.carcoderepo.repository.UserRepository;
 
 @Service

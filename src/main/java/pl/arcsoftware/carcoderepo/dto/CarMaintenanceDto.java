@@ -1,6 +1,6 @@
 package pl.arcsoftware.carcoderepo.dto;
 
-import pl.arcsoftware.carcoderepo.models.newModels.CarEntity;
+import pl.arcsoftware.carcoderepo.models.CarEntity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

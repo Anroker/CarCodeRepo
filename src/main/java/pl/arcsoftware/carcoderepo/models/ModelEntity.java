@@ -1,4 +1,4 @@
-package pl.arcsoftware.carcoderepo.models.newModels;
+package pl.arcsoftware.carcoderepo.models;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;

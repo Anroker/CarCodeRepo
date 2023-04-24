@@ -13,7 +13,7 @@ import pl.arcsoftware.carcoderepo.dto.request.LoginRequest;
 import pl.arcsoftware.carcoderepo.dto.request.SignupRequest;
 import pl.arcsoftware.carcoderepo.dto.response.JwtResponse;
 import pl.arcsoftware.carcoderepo.dto.response.MessageResponse;
-import pl.arcsoftware.carcoderepo.models.newModels.UsersEntity;
+import pl.arcsoftware.carcoderepo.models.UsersEntity;
 import pl.arcsoftware.carcoderepo.repository.UserRepository;
 import pl.arcsoftware.carcoderepo.security.jwt.JwtUtils;
 import pl.arcsoftware.carcoderepo.security.services.UserDetailsImpl;

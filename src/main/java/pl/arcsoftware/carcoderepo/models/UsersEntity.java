@@ -1,34 +1,34 @@
-/*
 package pl.arcsoftware.carcoderepo.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import java.time.OffsetDateTime;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Table(name = "users",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "username"),
-                @UniqueConstraint(columnNames = "email")
-        })
+@Table(name = "users", schema = "public", catalog = "carhistorytempDB")
 public class UsersEntity {
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotBlank
-    @Size(max = 45)
+    @Id
+    @Column(name = "id", nullable = false)
+    private Integer id;
+    @Basic
+    @Column(name = "username", nullable = true, length = 45)
     private String username;
-
-    @NotBlank
-    @Size(max = 45)
-    @Email
-    private String email;
-
-    @NotBlank
-    @Size(max = 120)
+    @Basic
+    @Column(name = "password", nullable = true, length = 120)
     private String password;
+    @Basic
+    @Column(name = "email", nullable = true, length = 45)
+    private String email;
+    @Basic
+    @Column(name = "created_at", nullable = true)
+    private OffsetDateTime createdAt;
+    @Basic
+    @Column(name = "modified_at", nullable = true)
+    private OffsetDateTime modifiedAt;
+    @OneToMany(mappedBy = "usersByUserId")
+    private Collection<CarEntity> carsById;
 
     public UsersEntity() {
     }
@@ -39,11 +39,12 @@ public class UsersEntity {
         this.password = password;
     }
 
-    public Long getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public UsersEntity setId(Long id) {
+    public UsersEntity setId(Integer id) {
         this.id = id;
         return this;
     }
@@ -57,6 +58,15 @@ public class UsersEntity {
         return this;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public UsersEntity setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -66,12 +76,55 @@ public class UsersEntity {
         return this;
     }
 
-    public String getPassword() {
-        return password;
+
+    public Object getCreatedAt() {
+        return createdAt;
     }
 
-    public UsersEntity setPassword(String password) {
-        this.password = password;
+    public UsersEntity setCreatedAt(OffsetDateTime createdAt) {
+        this.createdAt = createdAt;
         return this;
     }
-}*/
+
+    public Object getModifiedAt() {
+        return modifiedAt;
+    }
+
+    public UsersEntity setModifiedAt(OffsetDateTime modifiedAt) {
+        this.modifiedAt = modifiedAt;
+        return this;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = OffsetDateTime.now();
+        modifiedAt = OffsetDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        modifiedAt = OffsetDateTime.now();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UsersEntity that = (UsersEntity) o;
+        return Objects.equals(id, that.id) && Objects.equals(username, that.username) && Objects.equals(password, that.password) && Objects.equals(email, that.email) && Objects.equals(createdAt, that.createdAt) && Objects.equals(modifiedAt, that.modifiedAt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, email, createdAt, modifiedAt);
+    }
+
+    public Collection<CarEntity> getCarsById() {
+        return carsById;
+    }
+
+    public UsersEntity setCarsById(Collection<CarEntity> carsById) {
+        this.carsById = carsById;
+        return this;
+    }
+}

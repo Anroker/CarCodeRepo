@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import pl.arcsoftware.carcoderepo.models.newModels.UsersEntity;
+import pl.arcsoftware.carcoderepo.models.UsersEntity;
 
 import java.util.Collection;
 import java.util.Collections;
