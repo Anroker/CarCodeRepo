@@ -40,7 +40,6 @@ public class UsersEntity {
     }
 
 
-
     public Integer getId() {
         return id;
     }
@@ -77,6 +76,7 @@ public class UsersEntity {
         return this;
     }
 
+
     public Object getCreatedAt() {
         return createdAt;
     }
@@ -93,6 +93,17 @@ public class UsersEntity {
     public UsersEntity setModifiedAt(OffsetDateTime modifiedAt) {
         this.modifiedAt = modifiedAt;
         return this;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = OffsetDateTime.now();
+        modifiedAt = OffsetDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        modifiedAt = OffsetDateTime.now();
     }
 
     @Override
