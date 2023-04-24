@@ -1,7 +1,6 @@
 package pl.arcsoftware.carcoderepo.models;
 
 import javax.persistence.*;
-import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Objects;
@@ -12,16 +11,16 @@ public class EngineEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
     @Basic
     @Column(name = "code", nullable = true, length = 45)
     private String code;
     @Basic
     @Column(name = "size", nullable = true, precision = 0)
-    private BigInteger size;
-//    @Basic
+    private Long size;
+    //    @Basic
 //    @Column(name = "model_id", nullable = true)
-//    private Integer modelId;
+//    private Long modelId;
     @Basic
     @Column(name = "created_at", nullable = true)
     private OffsetDateTime createdAt;
@@ -34,11 +33,11 @@ public class EngineEntity {
     @JoinColumn(name = "model_id", referencedColumnName = "id")
     private ModelEntity modelByModelId;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public EngineEntity setId(Integer id) {
+    public EngineEntity setId(Long id) {
         this.id = id;
         return this;
     }
@@ -52,11 +51,11 @@ public class EngineEntity {
         return this;
     }
 
-    public BigInteger getSize() {
+    public Long getSize() {
         return size;
     }
 
-    public EngineEntity setSize(BigInteger size) {
+    public EngineEntity setSize(Long size) {
         this.size = size;
         return this;
     }

@@ -11,7 +11,7 @@ public class CarMaintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createdAt;
@@ -26,11 +26,11 @@ public class CarMaintenance {
     @JoinColumn(name = "car_id", nullable = false)
     private Car car;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

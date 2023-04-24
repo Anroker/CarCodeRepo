@@ -5,25 +5,50 @@ import javax.validation.constraints.NotBlank;
 public class CarRequest {
 
     @NotBlank
-    private String model;
+    private Long model_id;
 
     @NotBlank
-    private String engine;
+    private Long brand_id;
 
-    public String getModel() {
-        return model;
+    @NotBlank
+    private String name;
+
+    @NotBlank
+    private String mark;
+
+    public Long getModel_id() {
+        return model_id;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public CarRequest setModel_id(Long model_id) {
+        this.model_id = model_id;
+        return this;
     }
 
-    public String getEngine() {
-        return engine;
+    public Long getBrand_id() {
+        return brand_id;
     }
 
-    public void setEngine(String engine) {
-        this.engine = engine;
+    public CarRequest setBrand_id(Long brand_id) {
+        this.brand_id = brand_id;
+        return this;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public CarRequest setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public String getMark() {
+        return mark;
+    }
+
+    public CarRequest setMark(String mark) {
+        this.mark = mark;
+        return this;
+    }
 }

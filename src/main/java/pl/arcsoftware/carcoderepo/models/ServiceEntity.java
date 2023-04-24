@@ -11,7 +11,7 @@ public class ServiceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
     @Basic
     @Column(name = "name", nullable = true, length = 45)
     private String name;
@@ -24,11 +24,11 @@ public class ServiceEntity {
     @OneToMany(mappedBy = "serviceByServiceId")
     private Collection<MaintenanceEntity> maintenancesById;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public ServiceEntity setId(Integer id) {
+    public ServiceEntity setId(Long id) {
         this.id = id;
         return this;
     }

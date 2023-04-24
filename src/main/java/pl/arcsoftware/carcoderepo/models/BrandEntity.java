@@ -11,7 +11,7 @@ public class BrandEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
     @Basic
     @Column(name = "name", nullable = true, length = 45)
     private String name;
@@ -24,11 +24,11 @@ public class BrandEntity {
     @OneToMany(mappedBy = "brandByBrandId")
     private Collection<ModelEntity> modelsById;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public BrandEntity setId(Integer id) {
+    public BrandEntity setId(Long id) {
         this.id = id;
         return this;
     }

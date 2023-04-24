@@ -9,10 +9,10 @@ import java.util.Objects;
 public class ModelEngineEntity {
     @Basic
     @Column(name = "model_id", nullable = true)
-    private Integer modelId;
+    private Long modelId;
     @Basic
     @Column(name = "engine_id", nullable = true)
-    private Integer engineId;
+    private Long engineId;
     @ManyToOne
     @JoinColumn(name = "model_id", referencedColumnName = "id")
     private ModelEntity modelByModelId;
@@ -20,20 +20,20 @@ public class ModelEngineEntity {
     @JoinColumn(name = "engine_id", referencedColumnName = "id")
     private EngineEntity engineByEngineId;
 
-    public Integer getModelId() {
+    public Long getModelId() {
         return modelId;
     }
 
-    public ModelEngineEntity setModelId(Integer modelId) {
+    public ModelEngineEntity setModelId(Long modelId) {
         this.modelId = modelId;
         return this;
     }
 
-    public Integer getEngineId() {
+    public Long getEngineId() {
         return engineId;
     }
 
-    public ModelEngineEntity setEngineId(Integer engineId) {
+    public ModelEngineEntity setEngineId(Long engineId) {
         this.engineId = engineId;
         return this;
     }

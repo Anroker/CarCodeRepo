@@ -11,7 +11,7 @@ public class ModelEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
     @Basic
     @Column(name = "name", nullable = true, length = 45)
     private String name;
@@ -20,14 +20,14 @@ public class ModelEntity {
     private String mark;
 //    @Basic
 //    @Column(name = "brand_id", nullable = true)
-//    private Integer brandId;
+//    private Long brandId;
     @Basic
     @Column(name = "created_at", nullable = true)
     private OffsetDateTime createdAt;
     @Basic
     @Column(name = "modified_at", nullable = true)
     private OffsetDateTime modifiedAt;
-    @OneToMany(mappedBy = "modelByModelId")
+    @OneToMany(mappedBy = "model")
     private Collection<CarEntity> carsById;
     @OneToMany(mappedBy = "modelByModelId")
     private Collection<EngineEntity> enginesById;
@@ -35,11 +35,11 @@ public class ModelEntity {
     @JoinColumn(name = "brand_id", referencedColumnName = "id")
     private BrandEntity brandByBrandId;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public ModelEntity setId(Integer id) {
+    public ModelEntity setId(Long id) {
         this.id = id;
         return this;
     }

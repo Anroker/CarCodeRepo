@@ -11,7 +11,7 @@ public class UsersEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
     @Basic
     @Column(name = "username", nullable = true, length = 45)
     private String username;
@@ -27,8 +27,8 @@ public class UsersEntity {
     @Basic
     @Column(name = "modified_at", nullable = true)
     private OffsetDateTime modifiedAt;
-    @OneToMany(mappedBy = "usersByUserId")
-    private Collection<CarEntity> carsById;
+    @OneToMany(mappedBy = "user")
+    private Collection<CarEntity> carsList;
 
     public UsersEntity() {
     }
@@ -40,11 +40,11 @@ public class UsersEntity {
     }
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public UsersEntity setId(Integer id) {
+    public UsersEntity setId(Long id) {
         this.id = id;
         return this;
     }
@@ -120,11 +120,11 @@ public class UsersEntity {
     }
 
     public Collection<CarEntity> getCarsById() {
-        return carsById;
+        return carsList;
     }
 
     public UsersEntity setCarsById(Collection<CarEntity> carsById) {
-        this.carsById = carsById;
+        this.carsList = carsById;
         return this;
     }
 }

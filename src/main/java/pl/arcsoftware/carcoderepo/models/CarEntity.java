@@ -10,7 +10,7 @@ public class CarEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
     @Basic
     @Column(name = "vin", nullable = true, length = 45)
     private String vin;
@@ -19,13 +19,13 @@ public class CarEntity {
     private String yearOfProduction;
 //    @Basic
 //    @Column(name = "model_id", nullable = true)
-//    private Integer modelId;
+//    private Long modelId;
 //    @Basic
 //    @Column(name = "engine_id", nullable = true)
-//    private Integer engineId;
+//    private Long engineId;
 //    @Basic
 //    @Column(name = "user_id", nullable = true)
-//    private Integer userId;
+//    private Long userId;
     @Basic
     @Column(name = "created_at", nullable = true)
     private OffsetDateTime createdAt;
@@ -34,23 +34,23 @@ public class CarEntity {
     private OffsetDateTime modifiedAt;
     @ManyToOne
     @JoinColumn(name = "model_id", referencedColumnName = "id")
-    private ModelEntity modelByModelId;
+    private ModelEntity model;
     @ManyToOne
     @JoinColumn(name = "engine_id", referencedColumnName = "id")
     private EngineEntity engineByEngineId;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UsersEntity usersByUserId;
+    private UsersEntity user;
 /*    @OneToMany(mappedBy = "carByCarId")
     private Collection<FuelNoteEntity> fuelNotesById;
     @OneToMany(mappedBy = "carByCarId")
     private Collection<MaintenanceEntity> maintenancesById;*/
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public CarEntity setId(Integer id) {
+    public CarEntity setId(Long id) {
         this.id = id;
         return this;
     }
@@ -112,11 +112,11 @@ public class CarEntity {
     }*/
 
     public UsersEntity getUsersByUserId() {
-        return usersByUserId;
+        return user;
     }
 
     public CarEntity setUsersByUserId(UsersEntity usersByUserId) {
-        this.usersByUserId = usersByUserId;
+        this.user = usersByUserId;
         return this;
     }
 
@@ -137,6 +137,33 @@ public class CarEntity {
         this.maintenancesById = maintenancesById;
         return this;
     }*/
+
+    public ModelEntity getModel() {
+        return model;
+    }
+
+    public CarEntity setModel(ModelEntity modelByModelId) {
+        this.model = modelByModelId;
+        return this;
+    }
+
+    public EngineEntity getEngineByEngineId() {
+        return engineByEngineId;
+    }
+
+    public CarEntity setEngineByEngineId(EngineEntity engineByEngineId) {
+        this.engineByEngineId = engineByEngineId;
+        return this;
+    }
+
+    public UsersEntity getUser() {
+        return user;
+    }
+
+    public CarEntity setUser(UsersEntity user) {
+        this.user = user;
+        return this;
+    }
 
     @Override
     public boolean equals(Object o) {

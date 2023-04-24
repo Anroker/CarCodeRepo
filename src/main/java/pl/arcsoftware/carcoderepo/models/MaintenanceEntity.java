@@ -11,22 +11,22 @@ public class MaintenanceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
     @Basic
     @Column(name = "car_id", nullable = true, insertable = false, updatable = false)
-    private Integer carId;
+    private Long carId;
     @Basic
     @Column(name = "company_id", nullable = true, insertable = false, updatable = false)
-    private Integer companyId;
+    private Long companyId;
     @Basic
     @Column(name = "service_id", nullable = true, insertable = false, updatable = false)
-    private Integer serviceId;
+    private Long serviceId;
     @Basic
     @Column(name = "rate", nullable = true)
-    private Integer rate;
+    private Long rate;
     @Basic
     @Column(name = "car_mileage", nullable = true)
-    private Integer carMileage;
+    private Long carMileage;
     @Basic
     @Column(name = "created_at", nullable = true)
     private OffsetDateTime createdAt;
@@ -43,56 +43,56 @@ public class MaintenanceEntity {
     @JoinColumn(name = "service_id", referencedColumnName = "id")
     private ServiceEntity serviceByServiceId;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public MaintenanceEntity setId(Integer id) {
+    public MaintenanceEntity setId(Long id) {
         this.id = id;
         return this;
     }
 
-    public Integer getCarId() {
+    public Long getCarId() {
         return carId;
     }
 
-    public MaintenanceEntity setCarId(Integer carId) {
+    public MaintenanceEntity setCarId(Long carId) {
         this.carId = carId;
         return this;
     }
 
-    public Integer getCompanyId() {
+    public Long getCompanyId() {
         return companyId;
     }
 
-    public MaintenanceEntity setCompanyId(Integer companyId) {
+    public MaintenanceEntity setCompanyId(Long companyId) {
         this.companyId = companyId;
         return this;
     }
 
-    public Integer getServiceId() {
+    public Long getServiceId() {
         return serviceId;
     }
 
-    public MaintenanceEntity setServiceId(Integer serviceId) {
+    public MaintenanceEntity setServiceId(Long serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    public Integer getRate() {
+    public Long getRate() {
         return rate;
     }
 
-    public MaintenanceEntity setRate(Integer rate) {
+    public MaintenanceEntity setRate(Long rate) {
         this.rate = rate;
         return this;
     }
 
-    public Integer getCarMileage() {
+    public Long getCarMileage() {
         return carMileage;
     }
 
-    public MaintenanceEntity setCarMileage(Integer carMileage) {
+    public MaintenanceEntity setCarMileage(Long carMileage) {
         this.carMileage = carMileage;
         return this;
     }

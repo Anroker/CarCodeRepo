@@ -11,19 +11,19 @@ public class FuelNoteEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
     @Basic
     @Column(name = "car_id", nullable = true)
-    private Integer carId;
+    private Long carId;
     @Basic
     @Column(name = "volume", nullable = true, precision = 2)
     private BigDecimal volume;
     @Basic
     @Column(name = "distance", nullable = true)
-    private Integer distance;
+    private Long distance;
     @Basic
     @Column(name = "car_mileage", nullable = true)
-    private Integer carMileage;
+    private Long carMileage;
     @Basic
     @Column(name = "cost", nullable = true, precision = 2)
     private BigDecimal cost;
@@ -37,20 +37,20 @@ public class FuelNoteEntity {
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private CarEntity carByCarId;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public FuelNoteEntity setId(Integer id) {
+    public FuelNoteEntity setId(Long id) {
         this.id = id;
         return this;
     }
 
-    public Integer getCarId() {
+    public Long getCarId() {
         return carId;
     }
 
-    public FuelNoteEntity setCarId(Integer carId) {
+    public FuelNoteEntity setCarId(Long carId) {
         this.carId = carId;
         return this;
     }
@@ -64,20 +64,20 @@ public class FuelNoteEntity {
         return this;
     }
 
-    public Integer getDistance() {
+    public Long getDistance() {
         return distance;
     }
 
-    public FuelNoteEntity setDistance(Integer distance) {
+    public FuelNoteEntity setDistance(Long distance) {
         this.distance = distance;
         return this;
     }
 
-    public Integer getCarMileage() {
+    public Long getCarMileage() {
         return carMileage;
     }
 
-    public FuelNoteEntity setCarMileage(Integer carMileage) {
+    public FuelNoteEntity setCarMileage(Long carMileage) {
         this.carMileage = carMileage;
         return this;
     }

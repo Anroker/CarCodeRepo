@@ -13,11 +13,16 @@ import org.springframework.web.bind.annotation.*;
 import pl.arcsoftware.carcoderepo.dto.request.car.CarRequest;
 import pl.arcsoftware.carcoderepo.dto.request.car.CarUpdateRequest;
 import pl.arcsoftware.carcoderepo.dto.request.car.fuel.FuelCreateRequest;
+import pl.arcsoftware.carcoderepo.dto.response.MessageResponse;
+import pl.arcsoftware.carcoderepo.models.CarEntity;
+import pl.arcsoftware.carcoderepo.models.UsersEntity;
 import pl.arcsoftware.carcoderepo.repository.CarRepository;
 import pl.arcsoftware.carcoderepo.repository.UserRepository;
+import pl.arcsoftware.carcoderepo.security.services.UserDetailsImpl;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 
 @RestController
@@ -47,6 +52,19 @@ public class CarController {
     @PostMapping("/addCar")
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<?> addCarToUser(Authentication authentication, @RequestBody CarRequest carRequest) {
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        Optional<UsersEntity> user = userRepository.findById(userDetails.getId());
+
+        if (user.isEmpty()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Cant find user!"));
+        }
+
+
+
+        CarEntity car = new CarEntity();
 
         return null; //carService.responseEntity(authentication, carRequest);
 

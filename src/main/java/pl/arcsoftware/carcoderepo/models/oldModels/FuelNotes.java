@@ -22,7 +22,7 @@ public class FuelNotes {
 
     private BigDecimal fuel;
 
-    private Integer distance;
+    private Long distance;
 
     @CreatedDate
     @Column(name = "created_at")
@@ -72,11 +72,11 @@ public class FuelNotes {
         return this;
     }
 
-    public Integer getDistance() {
+    public Long getDistance() {
         return distance;
     }
 
-    public FuelNotes setDistance(Integer distance) {
+    public FuelNotes setDistance(Long distance) {
         this.distance = distance;
         return this;
     }

@@ -8,7 +8,7 @@ import java.time.OffsetDateTime;
 import java.util.Objects;
 
 public class CarMaintenanceDto implements Serializable {
-    private final Integer id;
+    private final Long id;
     private final OffsetDateTime createdAt;
     private final OffsetDateTime modifiedAt;
     private final BigDecimal cost;
@@ -16,7 +16,7 @@ public class CarMaintenanceDto implements Serializable {
     private final String invoicePath;
     private final CarEntity car;
 
-    public CarMaintenanceDto(Integer id, OffsetDateTime createdAt, OffsetDateTime modifiedAt, BigDecimal cost, String description, String invoicePath, CarEntity car) {
+    public CarMaintenanceDto(Long id, OffsetDateTime createdAt, OffsetDateTime modifiedAt, BigDecimal cost, String description, String invoicePath, CarEntity car) {
         this.id = id;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
@@ -26,7 +26,7 @@ public class CarMaintenanceDto implements Serializable {
         this.car = car;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

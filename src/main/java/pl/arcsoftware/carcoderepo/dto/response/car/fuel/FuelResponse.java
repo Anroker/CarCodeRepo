@@ -16,12 +16,12 @@ public class FuelResponse {
     private BigDecimal fuel;
 
 
-    private Integer distance;
+    private Long distance;
 
     public FuelResponse() {
     }
 
-    public FuelResponse(String response, BigDecimal fuel, Integer distance) {
+    public FuelResponse(String response, BigDecimal fuel, Long distance) {
         this.response = response;
         this.fuel = fuel;
         this.distance = distance;
@@ -54,11 +54,11 @@ public class FuelResponse {
         return this;
     }
 
-    public Integer getDistance() {
+    public Long getDistance() {
         return distance;
     }
 
-    public FuelResponse setDistance(Integer distance) {
+    public FuelResponse setDistance(Long distance) {
         this.distance = distance;
         return this;
     }

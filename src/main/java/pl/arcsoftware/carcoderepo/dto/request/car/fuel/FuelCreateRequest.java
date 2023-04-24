@@ -8,7 +8,7 @@ public class FuelCreateRequest {
     private BigDecimal fuel;
 
 
-    private Integer distance;
+    private Long distance;
 
     public BigDecimal getFuel() {
         return fuel;
@@ -19,11 +19,11 @@ public class FuelCreateRequest {
         return this;
     }
 
-    public Integer getDistance() {
+    public Long getDistance() {
         return distance;
     }
 
-    public FuelCreateRequest setDistance(Integer distance) {
+    public FuelCreateRequest setDistance(Long distance) {
         this.distance = distance;
         return this;
     }
