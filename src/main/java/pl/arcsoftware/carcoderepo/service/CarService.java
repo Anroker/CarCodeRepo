@@ -1,3 +1,4 @@
+/*
 package pl.arcsoftware.carcoderepo.service;
 
 
@@ -10,9 +11,9 @@ import pl.arcsoftware.carcoderepo.dto.request.car.fuel.FuelCreateRequest;
 import pl.arcsoftware.carcoderepo.dto.response.MessageResponse;
 import pl.arcsoftware.carcoderepo.dto.response.car.CarResponse;
 import pl.arcsoftware.carcoderepo.dto.response.car.fuel.FuelResponse;
-import pl.arcsoftware.carcoderepo.models.Car;
-import pl.arcsoftware.carcoderepo.models.FuelNotes;
-import pl.arcsoftware.carcoderepo.models.User;
+import pl.arcsoftware.carcoderepo.models.newModels.CarEntity;
+import pl.arcsoftware.carcoderepo.models.newModels.FuelNoteEntity;
+import pl.arcsoftware.carcoderepo.models.newModels.UsersEntity;
 import pl.arcsoftware.carcoderepo.repository.CarRepository;
 import pl.arcsoftware.carcoderepo.security.services.UserDetailsImpl;
 import pl.arcsoftware.carcoderepo.repository.UserRepository;
@@ -33,7 +34,7 @@ public class CarService {
     public ResponseEntity<?> responseEntity(Authentication authentication, CarRequest carRequest) {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        Optional<User> user = userRepository.findById(userDetails.getId());
+        Optional<UsersEntity> user = userRepository.findById(userDetails.getId());
 
         if (user.isEmpty()) {
             return ResponseEntity
@@ -41,7 +42,7 @@ public class CarService {
                     .body(new MessageResponse("Error: Cant find user!"));
         }
 
-        Car car = new Car();
+        CarEntity car = new CarEntity();
 
         car.setEngine(carRequest.getEngine());
         car.setModel(carRequest.getModel());
@@ -80,7 +81,7 @@ public class CarService {
     public ResponseEntity<?> getAllCars(Authentication authentication) {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        Optional<User> user = userRepository.findById(userDetails.getId());
+        Optional<UsersEntity> user = userRepository.findById(userDetails.getId());
 
         if (user.isEmpty()) {
             return ResponseEntity
@@ -88,7 +89,7 @@ public class CarService {
                     .body(new MessageResponse("Error: Cant find user!"));
         }
 
-        List<Car> carList = carRepository.findCarByUserOrderById(user.get());
+        List<CarEntity> carList = carRepository.findCarByUserOrderById(user.get());
         List<CarResponse> carResponseList = carList.stream().map(this::buildCarResponse).collect(Collectors.toList());
 
         return ResponseEntity.ok(carResponseList);
@@ -150,7 +151,7 @@ public class CarService {
 
     public ResponseEntity<?> getFuelAfterAndBeforeWithCar(LocalDateTime afterDate, LocalDateTime beforeDate, Long id) {
 
-        Optional<Car> optionalCar = carRepository.findById(id);
+        Optional<CarEntity> optionalCar = carRepository.findById(id);
 
         if (optionalCar.isEmpty()) {
             return ResponseEntity
@@ -158,7 +159,7 @@ public class CarService {
                     .body(new MessageResponse("Error: Cant find car by id!"));
         }
 
-        List<FuelNotes> fuelNotes = fuelNotesRepository.findFuelNotesByCreatedDateAfterAndCreatedDateBeforeAndCar(afterDate, beforeDate, optionalCar.get());
+        List<FuelNoteEntity> fuelNotes = fuelNotesRepository.findFuelNotesByCreatedDateAfterAndCreatedDateBeforeAndCar(afterDate, beforeDate, optionalCar.get());
         List<FuelResponse> fuelResponseList = fuelNotes.stream().map(this::buildFuelResponse).toList();
 
         return ResponseEntity.ok(fuelResponseList);
@@ -166,7 +167,7 @@ public class CarService {
 
     public ResponseEntity<?> getFuelAvg(Long id){
 
-        Optional<Car> optionalCar = carRepository.findById(id);
+        Optional<CarEntity> optionalCar = carRepository.findById(id);
 
         if (optionalCar.isEmpty()) {
             return ResponseEntity
@@ -180,7 +181,7 @@ public class CarService {
 
     public ResponseEntity<?> getDistanceAvg(Long id) {
 
-        Optional<Car> optionalCar = carRepository.findById(id);
+        Optional<CarEntity> optionalCar = carRepository.findById(id);
 
         if (optionalCar.isEmpty()) {
             return ResponseEntity
@@ -213,7 +214,7 @@ public class CarService {
 
             return carResponse;
         }
-        private FuelResponse buildFuelResponse (FuelNotes fuel){
+        private FuelResponse buildFuelResponse (FuelNoteEntity fuel){
             FuelResponse fuelResponse = new FuelResponse();
 
             fuelResponse
@@ -224,3 +225,4 @@ public class CarService {
         }
 
 }
+*/

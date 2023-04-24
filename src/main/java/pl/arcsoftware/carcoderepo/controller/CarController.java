@@ -10,19 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import pl.arcsoftware.carcoderepo.models.FuelNotes;
-
 import pl.arcsoftware.carcoderepo.dto.request.car.CarRequest;
 import pl.arcsoftware.carcoderepo.dto.request.car.CarUpdateRequest;
 import pl.arcsoftware.carcoderepo.dto.request.car.fuel.FuelCreateRequest;
 import pl.arcsoftware.carcoderepo.repository.CarRepository;
-import pl.arcsoftware.carcoderepo.repository.FuelNotesRepository;
 import pl.arcsoftware.carcoderepo.repository.UserRepository;
-import pl.arcsoftware.carcoderepo.service.CarService;
+
 import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.util.List;
 
 
 @RestController
@@ -34,14 +29,12 @@ public class CarController {
 
     private final CarRepository carRepository;
     private final UserRepository userRepository;
-    private final FuelNotesRepository fuelNotesRepository;
-    private final CarService carService;
+//    private final FuelNotesRepository fuelNotesRepository;
+//    private final CarService carService;
 
-    public CarController(CarRepository carRepository, UserRepository userRepository, FuelNotesRepository fuelNotesRepository, CarService carService) {
+    public CarController(CarRepository carRepository, UserRepository userRepository) {
         this.carRepository = carRepository;
         this.userRepository = userRepository;
-        this.fuelNotesRepository = fuelNotesRepository;
-        this.carService = carService;
     }
 
     /**************
@@ -55,7 +48,7 @@ public class CarController {
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<?> addCarToUser(Authentication authentication, @RequestBody CarRequest carRequest) {
 
-        return carService.responseEntity(authentication, carRequest);
+        return null; //carService.responseEntity(authentication, carRequest);
 
     }
 
@@ -66,7 +59,7 @@ public class CarController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getCarById(@PathVariable Long id) {
 
-        return carService.getCarById(id);
+        return null; //carService.getCarById(id);
 
     }
 
@@ -77,7 +70,7 @@ public class CarController {
     @GetMapping("/")
     public ResponseEntity<?> getAllCars(Authentication authentication) {
 
-        return carService.getAllCars(authentication);
+        return null; //carService.getAllCars(authentication);
     }
 
     @Operation(
@@ -88,7 +81,7 @@ public class CarController {
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<?> updateCar(@PathVariable(value = "id") Long carId, @Valid @RequestBody CarUpdateRequest carUpdateRequest) {
 
-        return carService.updateCar(carId, carUpdateRequest);
+        return null; //carService.updateCar(carId, carUpdateRequest);
 
     }
 
@@ -103,7 +96,7 @@ public class CarController {
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<?> addFuelToCar(@PathVariable Long id, @RequestBody FuelCreateRequest fuelCreateRequest) {
 
-        return carService.addFuelToCar(id, fuelCreateRequest);
+        return null; //carService.addFuelToCar(id, fuelCreateRequest);
 
     }
 
@@ -113,9 +106,9 @@ public class CarController {
     @GetMapping("/fuel/get")
     public ResponseEntity<?> getFuelAfterAndBefore(@RequestParam("After") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime afterDate, @RequestParam("Before") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime beforeDate) {
 
-        List<FuelNotes> fuelNotes = fuelNotesRepository.findFuelNotesByCreatedDateAfterAndCreatedDateBefore(afterDate, beforeDate);
+//        List<FuelNoteEntity> fuelNotes = fuelNotesRepository.findFuelNotesByCreatedDateAfterAndCreatedDateBefore(afterDate, beforeDate);
 
-        return ResponseEntity.ok(fuelNotes);
+        return null; //ResponseEntity.ok(fuelNotes);
     }
 
     @Operation(
@@ -130,21 +123,21 @@ public class CarController {
     @GetMapping("/{id}/fuel/getWithDates")
     public ResponseEntity<?> getFuelAfterAndBeforeWithCar(@RequestParam("After") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime afterDate, @RequestParam("Before") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime beforeDate, @PathVariable Long id) {
 
-        return carService.getFuelAfterAndBeforeWithCar(afterDate, beforeDate, id);
+        return null; //carService.getFuelAfterAndBeforeWithCar(afterDate, beforeDate, id);
     }
 
     @GetMapping("{id}/fuel/avg")
     public ResponseEntity<?> getFuelAvg(@PathVariable Long id) {
 
-        return carService.getFuelAvg(id);
+        return null; //carService.getFuelAvg(id);
     }
 
     @GetMapping("{id}/distance/avg")
     public ResponseEntity<?> getDistanceAvg(@PathVariable Long id) {
 
-        return carService.getDistanceAvg(id);
+        return null; //carService.getDistanceAvg(id);
     }
-    }
+}
 
 
 

@@ -1,6 +1,6 @@
 package pl.arcsoftware.carcoderepo.dto;
 
-import pl.arcsoftware.carcoderepo.models.Car;
+import pl.arcsoftware.carcoderepo.models.newModels.CarEntity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -14,9 +14,9 @@ public class CarMaintenanceDto implements Serializable {
     private final BigDecimal cost;
     private final String description;
     private final String invoicePath;
-    private final Car car;
+    private final CarEntity car;
 
-    public CarMaintenanceDto(Integer id, OffsetDateTime createdAt, OffsetDateTime modifiedAt, BigDecimal cost, String description, String invoicePath, Car car) {
+    public CarMaintenanceDto(Integer id, OffsetDateTime createdAt, OffsetDateTime modifiedAt, BigDecimal cost, String description, String invoicePath, CarEntity car) {
         this.id = id;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
@@ -50,7 +50,7 @@ public class CarMaintenanceDto implements Serializable {
         return invoicePath;
     }
 
-    public Car getCar() {
+    public CarEntity getCar() {
         return car;
     }
 

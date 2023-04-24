@@ -1,3 +1,4 @@
+/*
 package pl.arcsoftware.carcoderepo.models;
 
 import org.hibernate.annotations.DynamicInsert;
@@ -21,7 +22,7 @@ public class Car {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UsersEntity usersEntity;
 
     @Column(name = "year_of_production")
     private short year_of_production;
@@ -56,12 +57,12 @@ public class Car {
         return this;
     }
 
-    public User getUser() {
-        return user;
+    public UsersEntity getUser() {
+        return usersEntity;
     }
 
-    public Car setUser(User user) {
-        this.user = user;
+    public Car setUser(UsersEntity usersEntity) {
+        this.usersEntity = usersEntity;
         return this;
     }
 
@@ -88,9 +89,10 @@ public class Car {
         return "Car{" +
                 "model='" + model + '\'' +
                 ", engine='" + engine + '\'' +
-                ", user=" + user.getUsername() +
+                ", user=" + usersEntity.getUsername() +
                 ", year_of_production=" + year_of_production +
                 ", vin='" + vin + '\'' +
                 '}';
     }
 }
+*/

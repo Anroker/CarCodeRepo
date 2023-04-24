@@ -1,3 +1,4 @@
+/*
 package pl.arcsoftware.carcoderepo.models;
 
 import javax.persistence.*;
@@ -65,4 +66,4 @@ public class CarMaintenance {
         this.car = car;
     }
 
-}
+}*/

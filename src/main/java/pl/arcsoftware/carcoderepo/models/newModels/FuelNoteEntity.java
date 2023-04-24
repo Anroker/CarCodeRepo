@@ -1,3 +1,4 @@
+/*
 package pl.arcsoftware.carcoderepo.models.newModels;
 
 import javax.persistence.*;
@@ -131,3 +132,4 @@ public class FuelNoteEntity {
     }
 
 }
+*/

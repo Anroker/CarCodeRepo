@@ -1,3 +1,4 @@
+/*
 package pl.arcsoftware.carcoderepo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,4 +9,4 @@ import pl.arcsoftware.carcoderepo.models.CarMaintenance;
 @Repository
 public interface CarMaintenanceRepository extends JpaRepository<CarMaintenance, Long> {
 
-}
+}*/

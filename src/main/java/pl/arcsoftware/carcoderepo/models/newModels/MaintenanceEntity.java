@@ -1,6 +1,8 @@
+/*
 package pl.arcsoftware.carcoderepo.models.newModels;
 
 import javax.persistence.*;
+import java.time.OffsetDateTime;
 import java.util.Objects;
 
 @Entity
@@ -11,13 +13,13 @@ public class MaintenanceEntity {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic
-    @Column(name = "car_id", nullable = true)
+    @Column(name = "car_id", nullable = true, insertable = false, updatable = false)
     private Integer carId;
     @Basic
-    @Column(name = "company_id", nullable = true)
+    @Column(name = "company_id", nullable = true, insertable = false, updatable = false)
     private Integer companyId;
     @Basic
-    @Column(name = "service_id", nullable = true)
+    @Column(name = "service_id", nullable = true, insertable = false, updatable = false)
     private Integer serviceId;
     @Basic
     @Column(name = "rate", nullable = true)
@@ -27,10 +29,10 @@ public class MaintenanceEntity {
     private Integer carMileage;
     @Basic
     @Column(name = "created_at", nullable = true)
-    private Object createdAt;
+    private OffsetDateTime createdAt;
     @Basic
     @Column(name = "modified_at", nullable = true)
-    private Object modifiedAt;
+    private OffsetDateTime modifiedAt;
     @ManyToOne
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private CarEntity carByCarId;
@@ -99,7 +101,7 @@ public class MaintenanceEntity {
         return createdAt;
     }
 
-    public MaintenanceEntity setCreatedAt(Object createdAt) {
+    public MaintenanceEntity setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
         return this;
     }
@@ -108,7 +110,7 @@ public class MaintenanceEntity {
         return modifiedAt;
     }
 
-    public MaintenanceEntity setModifiedAt(Object modifiedAt) {
+    public MaintenanceEntity setModifiedAt(OffsetDateTime modifiedAt) {
         this.modifiedAt = modifiedAt;
         return this;
     }
@@ -153,3 +155,4 @@ public class MaintenanceEntity {
         return Objects.hash(id, carId, companyId, serviceId, rate, carMileage, createdAt, modifiedAt);
     }
 }
+*/

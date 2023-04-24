@@ -1,6 +1,7 @@
 package pl.arcsoftware.carcoderepo.models.newModels;
 
 import javax.persistence.*;
+import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -17,21 +18,21 @@ public class CarEntity {
     @Basic
     @Column(name = "year_of_production", nullable = true, length = 4)
     private String yearOfProduction;
-    @Basic
-    @Column(name = "model_id", nullable = true)
-    private Integer modelId;
-    @Basic
-    @Column(name = "engine_id", nullable = true)
-    private Integer engineId;
-    @Basic
-    @Column(name = "user_id", nullable = true)
-    private Integer userId;
+//    @Basic
+//    @Column(name = "model_id", nullable = true)
+//    private Integer modelId;
+//    @Basic
+//    @Column(name = "engine_id", nullable = true)
+//    private Integer engineId;
+//    @Basic
+//    @Column(name = "user_id", nullable = true)
+//    private Integer userId;
     @Basic
     @Column(name = "created_at", nullable = true)
-    private Object createdAt;
+    private OffsetDateTime createdAt;
     @Basic
     @Column(name = "modified_at", nullable = true)
-    private Object modifiedAt;
+    private OffsetDateTime modifiedAt;
     @ManyToOne
     @JoinColumn(name = "model_id", referencedColumnName = "id")
     private ModelEntity modelByModelId;
@@ -41,10 +42,10 @@ public class CarEntity {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UsersEntity usersByUserId;
-    @OneToMany(mappedBy = "carByCarId")
+/*    @OneToMany(mappedBy = "carByCarId")
     private Collection<FuelNoteEntity> fuelNotesById;
     @OneToMany(mappedBy = "carByCarId")
-    private Collection<MaintenanceEntity> maintenancesById;
+    private Collection<MaintenanceEntity> maintenancesById;*/
 
     public Integer getId() {
         return id;
@@ -73,38 +74,13 @@ public class CarEntity {
         return this;
     }
 
-    public Integer getModelId() {
-        return modelId;
-    }
 
-    public CarEntity setModelId(Integer modelId) {
-        this.modelId = modelId;
-        return this;
-    }
-
-    public Integer getEngineId() {
-        return engineId;
-    }
-
-    public CarEntity setEngineId(Integer engineId) {
-        this.engineId = engineId;
-        return this;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public CarEntity setUserId(Integer userId) {
-        this.userId = userId;
-        return this;
-    }
 
     public Object getCreatedAt() {
         return createdAt;
     }
 
-    public CarEntity setCreatedAt(Object createdAt) {
+    public CarEntity setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
         return this;
     }
@@ -113,12 +89,12 @@ public class CarEntity {
         return modifiedAt;
     }
 
-    public CarEntity setModifiedAt(Object modifiedAt) {
+    public CarEntity setModifiedAt(OffsetDateTime modifiedAt) {
         this.modifiedAt = modifiedAt;
         return this;
     }
 
-    public ModelEntity getModelByModelId() {
+/*    public ModelEntity getModelByModelId() {
         return modelByModelId;
     }
 
@@ -134,7 +110,7 @@ public class CarEntity {
     public CarEntity setEngineByEngineId(EngineEntity engineByEngineId) {
         this.engineByEngineId = engineByEngineId;
         return this;
-    }
+    }*/
 
     public UsersEntity getUsersByUserId() {
         return usersByUserId;
@@ -145,7 +121,7 @@ public class CarEntity {
         return this;
     }
 
-    public Collection<FuelNoteEntity> getFuelNotesById() {
+/*    public Collection<FuelNoteEntity> getFuelNotesById() {
         return fuelNotesById;
     }
 
@@ -161,18 +137,18 @@ public class CarEntity {
     public CarEntity setMaintenancesById(Collection<MaintenanceEntity> maintenancesById) {
         this.maintenancesById = maintenancesById;
         return this;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CarEntity carEntity = (CarEntity) o;
-        return Objects.equals(id, carEntity.id) && Objects.equals(vin, carEntity.vin) && Objects.equals(yearOfProduction, carEntity.yearOfProduction) && Objects.equals(modelId, carEntity.modelId) && Objects.equals(engineId, carEntity.engineId) && Objects.equals(userId, carEntity.userId) && Objects.equals(createdAt, carEntity.createdAt) && Objects.equals(modifiedAt, carEntity.modifiedAt);
+        return Objects.equals(id, carEntity.id) && Objects.equals(vin, carEntity.vin) && Objects.equals(yearOfProduction, carEntity.yearOfProduction) && Objects.equals(createdAt, carEntity.createdAt) && Objects.equals(modifiedAt, carEntity.modifiedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, vin, yearOfProduction, modelId, engineId, userId, createdAt, modifiedAt);
+        return Objects.hash(id, vin, yearOfProduction, createdAt, modifiedAt);
     }
 }

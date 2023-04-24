@@ -1,6 +1,8 @@
+/*
 package pl.arcsoftware.carcoderepo.models.newModels;
 
 import javax.persistence.*;
+import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -19,10 +21,10 @@ public class CompanyEntity {
     private String address;
     @Basic
     @Column(name = "created_at", nullable = true)
-    private Object createdAt;
+    private OffsetDateTime createdAt;
     @Basic
     @Column(name = "modified_at", nullable = true)
-    private Object modifiedAt;
+    private OffsetDateTime modifiedAt;
     @OneToMany(mappedBy = "companyByCompanyId")
     private Collection<MaintenanceEntity> maintenancesById;
 
@@ -57,7 +59,7 @@ public class CompanyEntity {
         return createdAt;
     }
 
-    public CompanyEntity setCreatedAt(Object createdAt) {
+    public CompanyEntity setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
         return this;
     }
@@ -66,7 +68,7 @@ public class CompanyEntity {
         return modifiedAt;
     }
 
-    public CompanyEntity setModifiedAt(Object modifiedAt) {
+    public CompanyEntity setModifiedAt(OffsetDateTime modifiedAt) {
         this.modifiedAt = modifiedAt;
         return this;
     }
@@ -94,3 +96,4 @@ public class CompanyEntity {
     }
 
 }
+*/

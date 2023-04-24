@@ -1,3 +1,4 @@
+/*
 package pl.arcsoftware.carcoderepo.models;
 
 import org.hibernate.annotations.DynamicInsert;
@@ -88,3 +89,4 @@ public class FuelNotes {
         this.car = car;
     }
 }
+*/
